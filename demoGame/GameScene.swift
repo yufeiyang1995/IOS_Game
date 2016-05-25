@@ -14,7 +14,9 @@ class GameScene: SKScene {
     
     let blockWidth = 40
     let blockHeight = 40
-    let spaceBetweenBlock = 8
+    let spaceBetweenBlock = 12
+    
+    var sign = 1
     
     var isTouched = false
     var backgroundNode:SKSpriteNode = SKSpriteNode()
@@ -22,15 +24,36 @@ class GameScene: SKScene {
     var action_list = Array<Location>()
     var node_list = Array<SKNode>()
     
-    override func didMoveToView(view: SKView) {
+    override init(size: CGSize) {
+        gBoard = gameBoard()
+        super.init(size: size)
         
         self.backgroundColor = UIColor.whiteColor()
         
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func didMoveToView(view: SKView) {
+        var x_margin = 0.0
+        var y_margin = 0.0
+        
+        x_margin = Double(self.size.width) - Double(gBoard.numCols * blockWidth)
+        x_margin = x_margin - Double((gBoard.numCols+1)*spaceBetweenBlock)
+        x_margin = x_margin / 2
+        y_margin = Double(self.size.height) - Double(gBoard.numRows * blockHeight)
+        y_margin = y_margin - Double((gBoard.numRows+1)*spaceBetweenBlock)
+        y_margin = y_margin / 2
+        
+        
+        
         backgroundNode = SKSpriteNode()
-        backgroundNode.size = CGSize(width: frame.size.width * 0.4, height: frame.size.width * 0.4)
+        backgroundNode.size = CGSize(width: frame.size.width * 0.9, height: frame.size.height * 0.9)
         backgroundNode.anchorPoint = CGPoint(x: 0, y: 0)
-        backgroundNode.zPosition = -1;
-        backgroundNode.position = CGPoint(x: 300, y: 150)
+        backgroundNode.zPosition = 0;
+        backgroundNode.position = CGPoint(x: 20, y: 120)
         backgroundNode.color = UIColor(red:0.95,green:0.69,blue:0.41,alpha:0.5)
         backgroundNode.name = "background"
         self.addChild(backgroundNode)
@@ -41,8 +64,10 @@ class GameScene: SKScene {
         for y in 0...(gBoard.numRows-1){
             for x in 0...(gBoard.numCols-1){
                 let tile = SKSpriteNode()
-                tile.position = CGPoint(x: x * blockWidth + (x + 1) * spaceBetweenBlock,y: y * blockHeight + (y + 1) * spaceBetweenBlock)
-                tile.anchorPoint = CGPoint(x:0, y:0)
+                let x_temp = x * blockWidth + (x + 1) * spaceBetweenBlock
+                let y_temp = y * blockHeight + (y + 1) * spaceBetweenBlock
+                tile.position = CGPoint(x: x_margin + Double(x_temp),y: y_margin + Double(y_temp))
+                //tile.anchorPoint = CGPoint(x:0, y:0)
                 tile.size = CGSize(width: blockWidth,height: blockHeight)
                 tile.zPosition = 0
                 
@@ -58,6 +83,7 @@ class GameScene: SKScene {
                 
             }
         }
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -170,16 +196,46 @@ class GameScene: SKScene {
         }
         isTouched = false
         if(gBoard.judge_game() == true){
+            sign = 2
+            /*var reveal = SKTransition.flipHorizontalWithDuration(0.5)
+            var gameScene = gameOverScene(size: self.size,won: true)
+            self.view?.presentScene(gameScene, transition: reveal)*/
             print("Success!")
         }
         else if(gBoard.has_no_start() == false){
+            sign = 3
             print("Failed")
         }
     }
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        
+        if(sign == 2){
+            let actions: [SKAction] = [SKAction.waitForDuration(2.0),SKAction.runBlock({
+                let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+                let gameScene = gameOverScene(size: self.size,won: true)
+                self.view?.presentScene(gameScene, transition: reveal)
+            })]
+            let sequence = SKAction.sequence(actions)
+            self.runAction(sequence)
+            
+        }
+        else if(sign == 3){
+           /* var reveal = SKTransition.flipHorizontalWithDuration(0.5)
+            var gameScene = gameOverScene(size: self.size,won: false)
+            self.view?.presentScene(gameScene, transition: reveal)
+            */
+            let actions: [SKAction] = [SKAction.waitForDuration(2.0),SKAction.runBlock({
+                let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+                let gameScene = gameOverScene(size: self.size,won: false)
+                self.view?.presentScene(gameScene, transition: reveal)
+            })]
+            var sequence = SKAction.sequence(actions)
+            self.runAction(sequence)
+        }
+    }
+    
+    override func didFinishUpdate() {
         
     }
     

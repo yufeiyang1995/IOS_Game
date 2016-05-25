@@ -17,6 +17,7 @@
 		7C96BF431CD622B600D348F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C96BF411CD622B600D348F9 /* LaunchScreen.storyboard */; };
 		7C96BF4D1CD6288C00D348F9 /* feidao.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C96BF4C1CD6288C00D348F9 /* feidao.png */; };
 		7C96BF531CD634EB00D348F9 /* gameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C96BF521CD634EB00D348F9 /* gameBoard.swift */; };
+		7CF227691CF59AF200E946DB /* gameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF227681CF59AF200E946DB /* gameOverScene.swift */; };
 		7CF6D7CC1CF18FA200D07D35 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6D7CB1CF18FA200D07D35 /* Location.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		7C96BF441CD622B600D348F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C96BF4C1CD6288C00D348F9 /* feidao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = feidao.png; path = demoGame/feidao.png; sourceTree = "<group>"; };
 		7C96BF521CD634EB00D348F9 /* gameBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameBoard.swift; sourceTree = "<group>"; };
+		7CF227681CF59AF200E946DB /* gameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameOverScene.swift; sourceTree = "<group>"; };
 		7CF6D7CB1CF18FA200D07D35 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = ../Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 				7C96BF3F1CD622B600D348F9 /* Assets.xcassets */,
 				7C96BF411CD622B600D348F9 /* LaunchScreen.storyboard */,
 				7C96BF441CD622B600D348F9 /* Info.plist */,
+				7CF227681CF59AF200E946DB /* gameOverScene.swift */,
 			);
 			path = demoGame;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			files = (
 				7C96BF531CD634EB00D348F9 /* gameBoard.swift in Sources */,
 				7C96BF391CD622B600D348F9 /* GameScene.swift in Sources */,
+				7CF227691CF59AF200E946DB /* gameOverScene.swift in Sources */,
 				7CF6D7CC1CF18FA200D07D35 /* Location.swift in Sources */,
 				7C96BF3B1CD622B600D348F9 /* GameViewController.swift in Sources */,
 				7C96BF351CD622B600D348F9 /* AppDelegate.swift in Sources */,
