@@ -9,12 +9,50 @@
 import SpriteKit
 
 class gameOverScene : SKScene{
+    var sign = true
     
     convenience init(size: CGSize, won: Bool) {
         self.init(size: size)
         self.backgroundColor = SKColor(red:1.0, green:1.0 ,blue:1.0 ,alpha:0.5)
         self.setupMsgLabel(won)
-        self.directorAction()
+        
+        if won{
+            sign = true
+            let node = SKSpriteNode()
+            node.name = "next"
+            node.position = CGPointMake(self.size.width/2, self.size.height * 0.25)
+            node.size = CGSize(width: self.size.width/4 ,height: self.size.width/8)
+            node.zPosition = 0
+            node.color = UIColor(red: 1.0,green: 0.0,blue: 0.0,alpha: 0.5)
+            self.addChild(node)
+        }
+        else{
+            sign = false
+            let node = SKSpriteNode()
+            node.name = "replay"
+            node.position = CGPointMake(self.size.width/2, self.size.height * 0.25)
+            node.size = CGSize(width: self.size.width/4 ,height: self.size.width/8)
+            node.zPosition = 0
+            node.color = UIColor(red: 0.0,green: 1.0,blue: 0.0,alpha: 0.5)
+            self.addChild(node)
+        }
+        //self.directorAction(won)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        for touch in touches {
+            let location = touch.locationInNode(self)
+            let node = self.nodeAtPoint(location)
+            print(node.name)
+            if(node.name == "next"){
+                self.directorAction(sign)
+            }
+            if(node.name == "replay"){
+                self.directorAction(sign)
+            }
+            
+        }
+        
     }
     
     func setupMsgLabel(won: Bool){
@@ -28,8 +66,11 @@ class gameOverScene : SKScene{
         self.addChild(msgLabel)
     }
     
-    func directorAction(){
-        let actions: [SKAction] = [SKAction.waitForDuration(2.0),SKAction.runBlock({
+    func directorAction(won: Bool){
+        if won{
+            level.level_up()
+        }
+        let actions: [SKAction] = [SKAction.waitForDuration(1.0),SKAction.runBlock({
             let reveal = SKTransition.flipHorizontalWithDuration(0.5)
             let gameScene = GameScene(size:self.size)
             self.view?.presentScene(gameScene, transition: reveal)

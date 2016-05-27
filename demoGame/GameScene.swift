@@ -24,12 +24,26 @@ class GameScene: SKScene {
     var action_list = Array<Location>()
     var node_list = Array<SKNode>()
     
+    enum Level: Int{
+        case One = 1,Two,Three,Four,Five,Six
+        mutating func nextLevel(){
+            switch self{
+            case .One:self = .Two
+            case .Two:self = .Three
+            case .Three:self = .Four
+            case .Four:self = .Five
+            case .Five:self = .Six
+            default:self = .One
+            }
+        }
+    }
+    var gameLevel:Level = .One
+    
     override init(size: CGSize) {
         gBoard = gameBoard()
         super.init(size: size)
         
         self.backgroundColor = UIColor.whiteColor()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,6 +51,9 @@ class GameScene: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
+        print(gameLevel.rawValue)
+        gBoard.init_board()
+        gBoard.set_board()
         var x_margin = 0.0
         var y_margin = 0.0
         
@@ -58,28 +75,33 @@ class GameScene: SKScene {
         backgroundNode.name = "background"
         self.addChild(backgroundNode)
         
-        gBoard.init_board()
-        gBoard.set_board("level1")
         
         for y in 0...(gBoard.numRows-1){
             for x in 0...(gBoard.numCols-1){
-                let tile = SKSpriteNode()
-                let x_temp = x * blockWidth + (x + 1) * spaceBetweenBlock
-                let y_temp = y * blockHeight + (y + 1) * spaceBetweenBlock
-                tile.position = CGPoint(x: x_margin + Double(x_temp),y: y_margin + Double(y_temp))
-                //tile.anchorPoint = CGPoint(x:0, y:0)
-                tile.size = CGSize(width: blockWidth,height: blockHeight)
-                tile.zPosition = 0
-                
-                backgroundNode.addChild(tile)
                 let gameValue = gBoard.get_value(x,y:y)
-                if(gameValue == 1 || gameValue == 2){
-                    tile.name = "node:\(x),\(y)"
+                if(gameValue > 0){
+                    let nodeName = get_name(gameValue)
+                    let nodeTexture = SKTexture(imageNamed: nodeName)
+                
+                    let tile = SKSpriteNode(texture: nodeTexture)
+                    let x_temp = x * blockWidth + (x + 1) * spaceBetweenBlock
+                    let y_temp = y * blockHeight + (y + 1) * spaceBetweenBlock
+                    tile.position = CGPoint(x: x_margin + Double(x_temp),y: y_margin + Double(y_temp))
+                //tile.anchorPoint = CGPoint(x:0, y:0)
+                    tile.size = CGSize(width: blockWidth,height: blockHeight)
+                    tile.setScale(2.0)
+                    tile.zPosition = 0
+                
+                    if(gameValue == 1 || gameValue == 2){
+                        tile.name = "node:\(x),\(y)"
+                    }
+                    if(gameValue == 3 || gameValue == 4){
+                        tile.name = "startnode:\(x),\(y)"
+                    }
+                
+                    backgroundNode.addChild(tile)
+               // tile.color = get_color(gameValue)
                 }
-                if(gameValue == 3 || gameValue == 4){
-                    tile.name = "startnode:\(x),\(y)"
-                }
-                tile.color = get_color(gameValue)
                 
             }
         }
@@ -134,6 +156,10 @@ class GameScene: SKScene {
                     if(action_list.count > 0 && (abs(action_list[action_list.count-1].x - x!) > 1||abs(action_list[action_list.count-1].y - y!) > 1)){
                         return
                     }
+                    if(action_list.count > 0 && abs(action_list[action_list.count-1].x - x!) == 1&&abs(action_list[action_list.count-1].y - y!) == 1){
+                        return;
+                    }
+
                     
                     if(action_list.count == 0){
                         
@@ -239,22 +265,23 @@ class GameScene: SKScene {
         
     }
     
-    func get_color (v:Int) -> UIColor{
+    func get_name (v:Int) -> String{
         switch v{
-        case 1:return UIColor(red:0,green:0,blue:0,alpha:0.5)
-        case 2:return UIColor(red:1,green:1,blue:1,alpha:0.5)
-        case 3:return UIColor(red:1,green:0,blue:0,alpha:0.5)
-        case 4:return UIColor(red:0,green:1,blue:0,alpha:0.5)
-        default:return UIColor(red:0.95,green:0.69,blue:0.41,alpha:0.5)
+        case 1:return "black"
+        case 2:return "white"
+        case 3:return "blackStart"
+        case 4:return "whiteStart"
+        default:return ""
         }
     }
     
     func get_action (v:Int) -> SKAction{
+        print(v)
         switch v{
-        case 1:return SKAction.colorizeWithColor(UIColor(red:1,green:1,blue:1,alpha:0.5), colorBlendFactor: 0, duration: 0)
-        case 2:return SKAction.colorizeWithColor(UIColor(red:0,green:0,blue:0,alpha:0.5), colorBlendFactor: 0, duration: 0)
-        case 3:return SKAction.colorizeWithColor(UIColor(red:0,green:1,blue:0,alpha:0.5), colorBlendFactor: 0, duration: 0)
-        case 4:return SKAction.colorizeWithColor(UIColor(red:1,green:0,blue:0,alpha:0.5), colorBlendFactor: 0, duration: 0)
+        case 1:return SKAction.animateWithTextures([SKTexture(imageNamed: "white")], timePerFrame: 0)
+        case 2:return SKAction.animateWithTextures([SKTexture(imageNamed: "black")], timePerFrame: 0)
+        case 3:return SKAction.animateWithTextures([SKTexture(imageNamed: "whiteStart")], timePerFrame: 0)
+        case 4:return SKAction.animateWithTextures([SKTexture(imageNamed: "blackStart")], timePerFrame: 0)
         default:return SKAction.colorizeWithColor(UIColor(red:0,green:0,blue:0,alpha:0.5), colorBlendFactor: 0, duration: 0)
         }
     }
@@ -277,8 +304,8 @@ class GameScene: SKScene {
     
     func get_start_action(v:Int) -> SKAction{
         switch v{
-        case 3:return SKAction.colorizeWithColor(UIColor(red:1,green:1,blue:1,alpha:0.5), colorBlendFactor: 0, duration: 0)
-        case 4:return SKAction.colorizeWithColor(UIColor(red:0,green:0,blue:0,alpha:0.5), colorBlendFactor: 0, duration: 0)
+        case 3:return SKAction.animateWithTextures([SKTexture(imageNamed: "white")], timePerFrame: 0)
+        case 4:return SKAction.animateWithTextures([SKTexture(imageNamed: "black")], timePerFrame: 0)
         default:return SKAction.colorizeWithColor(UIColor(red:0,green:0,blue:0,alpha:0.5), colorBlendFactor: 0, duration: 0)
         }
     }

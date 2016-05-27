@@ -14,8 +14,8 @@ enum GameStatus{
 }
 
 class gameBoard{
-    let numRows = 4;
-    let numCols = 4;
+    var numRows = 4;
+    var numCols = 4;
     var board = Array<Int>()
     var is_changed = Array<Int>()
     
@@ -25,6 +25,27 @@ class gameBoard{
     }
     
     func init_board(){
+        switch level.l {
+        case 1:
+            numRows = 5
+            numCols = 4
+            board = Array(count: 20,repeatedValue: 0)
+            is_changed = Array(count: 20,repeatedValue: 0)
+            break
+        case 2:
+            numRows = 5
+            numCols = 5
+            board = Array(count: 25,repeatedValue: 0)
+            is_changed = Array(count: 25,repeatedValue: 0)
+        case 3:
+            numRows = 6
+            numCols = 6
+            board = Array(count: 36,repeatedValue: 0)
+            is_changed = Array(count: 36,repeatedValue: 0)
+        default:numCols = 4
+            numRows = 4
+            
+        }
         for y in 0...(numRows-1) {
             for x in 0...(numCols-1){
                 print(x % numRows + y * numCols)
@@ -34,21 +55,12 @@ class gameBoard{
         }
     }
     
-    func set_board(filename:String){
-        var sp = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true)
-        print(sp[0])
-        print(sp.count)
-        if sp.count > 0{
-            var url = NSURL(fileURLWithPath: "\(sp[0])/\(filename).txt")
-            var data = NSMutableData()
-            
-            data.writeToFile(url.path!, atomically: true)
-            
-            var data1 = NSData(contentsOfFile: url.path!)
-            
-        }
+    func set_board(){
+        board[0] = 0
         board[3] = 3
         board[7] = 3
+        board[10] = 2
+        board[6] = 2
     }
     
     func get_value(x:Int,y:Int) -> Int{
@@ -62,6 +74,9 @@ class gameBoard{
             for x in 0...(numCols-1){
                 if(x % numRows + y * numCols + 1 >= numCols * numRows){break;}
                 if(board[x % numRows + y * numCols] == board[x % numRows + y * numCols + 1]){
+                    num = num + 1
+                }
+                if(board[x % numRows + y * numCols] == 0 || board[x % numRows + y * numCols + 1] == 0){
                     num = num + 1
                 }
             }
@@ -85,4 +100,5 @@ class gameBoard{
         }
         return false
     }
+    
 }
