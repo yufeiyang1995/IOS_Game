@@ -57,20 +57,24 @@ class GameScene: SKScene {
         var x_margin = 0.0
         var y_margin = 0.0
         
-        x_margin = Double(self.size.width) - Double(gBoard.numCols * blockWidth)
+        print(frame.size.width)
+        x_margin = Double(frame.size.width) - Double(gBoard.numCols * blockWidth)
+        print(x_margin);
         x_margin = x_margin - Double((gBoard.numCols+1)*spaceBetweenBlock)
+        print(x_margin);
         x_margin = x_margin / 2
-        y_margin = Double(self.size.height) - Double(gBoard.numRows * blockHeight)
+        print(x_margin);
+        y_margin = Double(frame.size.height) - Double(gBoard.numRows * blockHeight)
         y_margin = y_margin - Double((gBoard.numRows+1)*spaceBetweenBlock)
         y_margin = y_margin / 2
         
         
         
         backgroundNode = SKSpriteNode()
-        backgroundNode.size = CGSize(width: frame.size.width * 0.9, height: frame.size.height * 0.9)
+        backgroundNode.size = CGSize(width: frame.size.width, height: frame.size.height)
         backgroundNode.anchorPoint = CGPoint(x: 0, y: 0)
         backgroundNode.zPosition = 0;
-        backgroundNode.position = CGPoint(x: 20, y: 120)
+        backgroundNode.position = CGPoint(x: 0, y: 0)
         backgroundNode.color = UIColor(red:0.95,green:0.69,blue:0.41,alpha:0.5)
         backgroundNode.name = "background"
         self.addChild(backgroundNode)
@@ -90,7 +94,7 @@ class GameScene: SKScene {
                 //tile.anchorPoint = CGPoint(x:0, y:0)
                     tile.size = CGSize(width: blockWidth,height: blockHeight)
                     tile.setScale(2.0)
-                    tile.zPosition = 0
+                    tile.zPosition = 0.5
                 
                     if(gameValue == 1 || gameValue == 2){
                         tile.name = "node:\(x),\(y)"
@@ -119,6 +123,10 @@ class GameScene: SKScene {
             if (name?.componentsSeparatedByString("node").count > 1){
                 if(name?.componentsSeparatedByString("start").count > 1){
                     print("start")
+                    let wiggleIn = SKAction.scaleTo(2.2, duration: 0.1)
+                    //let wiggleOut = SKAction.scaleTo(2.2, duration: 0.1)
+                    node.runAction(wiggleIn)
+                    
                     isTouched = true
                     let subString1 = name?.componentsSeparatedByString(":")
                     let subString2 = subString1![1].componentsSeparatedByString(",")
@@ -145,6 +153,9 @@ class GameScene: SKScene {
                 if (name?.componentsSeparatedByString("node").count > 1){
                     let subString1 = name?.componentsSeparatedByString(":")
                     let subString2 = subString1![1].componentsSeparatedByString(",")
+                    let wiggleIn = SKAction.scaleTo(2.2, duration: 0.1)
+                   // let wiggleOut = SKAction.scaleTo(2.2, duration: 0.1)
+                    
                     
                     var x = Int(subString2[0])
                     var y = Int(subString2[1])
@@ -162,7 +173,7 @@ class GameScene: SKScene {
 
                     
                     if(action_list.count == 0){
-                        
+                        node.runAction(wiggleIn)
                         action_list.append(n)
                         node_list.append(node)
                         //let value = gBoard.get_value(x!,y: y!)
@@ -178,17 +189,20 @@ class GameScene: SKScene {
                                 print("test")
                                 x = action_list[action_list.count - 1].x
                                 y = action_list[action_list.count - 1].y
+                                let wiggleout = SKAction.scaleTo(2.0, duration: 0.1)
+                                node_list[action_list.count - 1].runAction(wiggleout)
                                 print(x! ,y!)
                                 action_list.removeLast()
                                 node_list.removeLast()
-                                
                             }
                             else{
+                                node.runAction(wiggleIn)
                                 action_list.append(n)
                                 node_list.append(node)
                             }
                         }
                         else{
+                            node.runAction(wiggleIn)
                             action_list.append(n)
                             node_list.append(node)
                             //let value = gBoard.get_value(x!,y: y!)
@@ -209,14 +223,18 @@ class GameScene: SKScene {
                 if(index != 0){
                     let value = gBoard.get_value(action_list[index].x, y: action_list[index].y)
                     node_list[index].runAction(get_action(value))
+                    let wiggleout = SKAction.scaleTo(2.0, duration: 0.1)
+                    node_list[index].runAction(wiggleout)
                     gBoard.board[action_list[index].x % gBoard.numRows + action_list[index].y * gBoard.numCols] = change_value(value)
                 }
             }
             let value = gBoard.get_value(action_list[0].x, y: action_list[0].y)
             node_list[0].runAction(get_start_action(value))
             node_list[0].name = "node:\(action_list[0].x),\(action_list[0].y)"
+            let wiggleout = SKAction.scaleTo(2.0, duration: 0.1)
+            node_list[0].runAction(wiggleout)
             gBoard.board[action_list[0].x % gBoard.numRows + action_list[0].y * gBoard.numCols] = change_start_value(value)
-        
+            
             node_list.removeAll()
             action_list.removeAll()
         }

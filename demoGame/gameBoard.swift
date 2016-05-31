@@ -56,11 +56,15 @@ class gameBoard{
     }
     
     func set_board(){
-        board[0] = 0
-        board[3] = 3
-        board[7] = 3
-        board[10] = 2
-        board[6] = 2
+        switch level.l{
+        case 1:
+            board[0] = 0
+            board[3] = 3
+            board[7] = 3
+            board[10] = 2
+            board[6] = 2
+        default:return
+        }
     }
     
     func get_value(x:Int,y:Int) -> Int{
