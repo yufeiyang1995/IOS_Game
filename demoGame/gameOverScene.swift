@@ -13,27 +13,41 @@ class gameOverScene : SKScene{
     
     convenience init(size: CGSize, won: Bool) {
         self.init(size: size)
-        self.backgroundColor = SKColor(red:1.0, green:1.0 ,blue:1.0 ,alpha:0.5)
+        var backgroundNode:SKSpriteNode = SKSpriteNode()
+        let nodeTexture = SKTexture(imageNamed: "beijing")
+        backgroundNode = SKSpriteNode(texture: nodeTexture)
+        backgroundNode.size = CGSize(width: frame.size.width, height: frame.size.height)
+        backgroundNode.anchorPoint = CGPoint(x: 0, y: 0)
+        backgroundNode.zPosition = 0;
+        backgroundNode.position = CGPoint(x: 0, y: 0)
+        
+        backgroundNode.name = "background"
+        self.addChild(backgroundNode)
+        
         self.setupMsgLabel(won)
         
         if won{
             sign = true
-            let node = SKSpriteNode()
+            let nextTexture = SKTexture(imageNamed:"kaishi2")
+            let node = SKSpriteNode(texture: nextTexture)
             node.name = "next"
-            node.position = CGPointMake(self.size.width/2, self.size.height * 0.25)
-            node.size = CGSize(width: self.size.width/4 ,height: self.size.width/8)
+            node.position = CGPointMake(self.size.width/2, self.size.height * 0.25 + 10)
+           // node.size = CGSize(width: self.size.width/4 ,height: self.size.width/8)
             node.zPosition = 0
-            node.color = UIColor(red: 1.0,green: 0.0,blue: 0.0,alpha: 0.5)
+            node.setScale(0.25)
+            //node.color = UIColor(red: 1.0,green: 0.0,blue: 0.0,alpha: 0.5)
             self.addChild(node)
         }
         else{
             sign = false
-            let node = SKSpriteNode()
+            let nextTexture = SKTexture(imageNamed:"restart")
+            let node = SKSpriteNode(texture: nextTexture)
             node.name = "replay"
-            node.position = CGPointMake(self.size.width/2, self.size.height * 0.25)
-            node.size = CGSize(width: self.size.width/4 ,height: self.size.width/8)
+            node.position = CGPointMake(self.size.width/2, self.size.height * 0.25 + 10)
+            node.setScale(0.7)
+           // node.size = CGSize(width: self.size.width/4 ,height: self.size.width/8)
             node.zPosition = 0
-            node.color = UIColor(red: 0.0,green: 1.0,blue: 0.0,alpha: 0.5)
+           // node.color = UIColor(red: 0.0,green: 1.0,blue: 0.0,alpha: 0.5)
             self.addChild(node)
         }
         //self.directorAction(won)
@@ -44,6 +58,7 @@ class gameOverScene : SKScene{
             let location = touch.locationInNode(self)
             let node = self.nodeAtPoint(location)
             print(node.name)
+            self.runAction(SKAction.playSoundFileNamed("ding.mp3", waitForCompletion: false))
             if(node.name == "next"){
                 self.directorAction(sign)
             }
@@ -60,9 +75,9 @@ class gameOverScene : SKScene{
         
         var msgLabel = SKLabelNode(fontNamed: "Chalkduster")
         msgLabel.text = msg
-        msgLabel.fontSize = 60
-        msgLabel.fontColor = SKColor(red:1.0, green:0.0 ,blue:0.0 ,alpha:0.5)
-        msgLabel.position = CGPointMake(self.size.width/2, self.size.height/2)
+        msgLabel.fontSize = 45
+        msgLabel.fontColor = SKColor(red:0.0, green:0.0 ,blue:0.0 ,alpha:0.5)
+        msgLabel.position = CGPointMake(self.size.width/2, self.size.height/2 + 50)
         self.addChild(msgLabel)
     }
     

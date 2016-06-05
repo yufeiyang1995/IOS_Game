@@ -1,19 +1,19 @@
 //
-//  GameViewController.swift
+//  startViewontroller.swift
 //  demoGame
 //
-//  Created by nju on 16/5/1.
-//  Copyright (c) 2016年 nju. All rights reserved.
+//  Created by nju on 16/6/5.
+//  Copyright © 2016年 nju. All rights reserved.
 //
 
 import UIKit
 import SpriteKit
 
-class GameViewController: UIViewController {
-
+class startViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -24,16 +24,16 @@ class GameViewController: UIViewController {
             skView.showsFPS = true
             skView.showsNodeCount = true
             
-            var scene : SKScene = GameScene(size: skView.bounds.size)
+            var scene : SKScene = startGameScene(size: skView.bounds.size)
             scene.scaleMode = .AspectFill
             skView.presentScene(scene)
         }
     }
-
+    
     override func shouldAutorotate() -> Bool {
         return false
     }
-
+    
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
             return .AllButUpsideDown
@@ -41,12 +41,12 @@ class GameViewController: UIViewController {
             return .All
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }

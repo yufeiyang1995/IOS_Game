@@ -5,36 +5,23 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="gU9-Ag-4D9">
             <objects>
-                <viewController id="04s-NW-aUN" sceneMemberID="viewController">
+                <viewController id="04s-NW-aUN" customClass="startViewController" customModule="demoGame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kUA-aa-iWx"/>
                         <viewControllerLayoutGuide type="bottom" id="R5N-5f-NDc"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yx6-gV-YXm">
+                    <view key="view" contentMode="scaleToFill" id="yx6-gV-YXm" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ab2-PC-Ho0">
-                                <rect key="frame" x="263" y="365" width="30" height="30"/>
-                                <state key="normal" title="play"/>
-                                <connections>
-                                    <segue destination="BV1-FR-VrT" kind="presentation" id="Nvb-JH-iKB"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ab2-PC-Ho0" firstAttribute="centerX" secondItem="yx6-gV-YXm" secondAttribute="centerX" id="gnD-dw-lvU"/>
-                            <constraint firstItem="ab2-PC-Ho0" firstAttribute="centerY" secondItem="yx6-gV-YXm" secondAttribute="centerY" id="xsx-VL-8qF"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhM-KO-MdR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="205" y="379"/>
+            <point key="canvasLocation" x="-235" y="22"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -52,7 +39,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1045" y="397"/>
+            <point key="canvasLocation" x="375" y="9"/>
         </scene>
     </scenes>
 </document>

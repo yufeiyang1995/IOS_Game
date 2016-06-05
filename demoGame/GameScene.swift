@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import AudioToolbox
 
 class GameScene: SKScene {
     var gridWidth = 200
@@ -14,7 +15,7 @@ class GameScene: SKScene {
     
     let blockWidth = 40
     let blockHeight = 40
-    let spaceBetweenBlock = 12
+    let spaceBetweenBlock = 25
     
     var sign = 1
     
@@ -69,13 +70,13 @@ class GameScene: SKScene {
         y_margin = y_margin / 2
         
         
-        
-        backgroundNode = SKSpriteNode()
+        let nodeTexture = SKTexture(imageNamed: "beijing")
+        backgroundNode = SKSpriteNode(texture: nodeTexture)
         backgroundNode.size = CGSize(width: frame.size.width, height: frame.size.height)
         backgroundNode.anchorPoint = CGPoint(x: 0, y: 0)
         backgroundNode.zPosition = 0;
         backgroundNode.position = CGPoint(x: 0, y: 0)
-        backgroundNode.color = UIColor(red:0.95,green:0.69,blue:0.41,alpha:0.5)
+        
         backgroundNode.name = "background"
         self.addChild(backgroundNode)
         
@@ -90,10 +91,10 @@ class GameScene: SKScene {
                     let tile = SKSpriteNode(texture: nodeTexture)
                     let x_temp = x * blockWidth + (x + 1) * spaceBetweenBlock
                     let y_temp = y * blockHeight + (y + 1) * spaceBetweenBlock
-                    tile.position = CGPoint(x: x_margin + Double(x_temp),y: y_margin + Double(y_temp))
+                    tile.position = CGPoint(x: x_margin + Double(x_temp) + 20,y: y_margin + Double(y_temp) + 30)
                 //tile.anchorPoint = CGPoint(x:0, y:0)
                     tile.size = CGSize(width: blockWidth,height: blockHeight)
-                    tile.setScale(2.0)
+                    tile.setScale(1.3)
                     tile.zPosition = 0.5
                 
                     if(gameValue == 1 || gameValue == 2){
@@ -110,6 +111,13 @@ class GameScene: SKScene {
             }
         }
         
+        let replayTexture = SKTexture(imageNamed: "restart")
+        let node = SKSpriteNode(texture: replayTexture)
+        node.name = "replay"
+        node.setScale(0.5)
+        node.zPosition = 0.5
+        node.position = CGPoint(x: self.size.width/2 + 5,y: self.size.height-30)
+        backgroundNode.addChild(node)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -120,10 +128,21 @@ class GameScene: SKScene {
             
             let node = self.nodeAtPoint(location)
             let name = node.name
+            if(name == "replay"){
+                self.runAction(SKAction.playSoundFileNamed("ding.mp3", waitForCompletion: false))
+                let actions: [SKAction] = [SKAction.waitForDuration(0.5),SKAction.runBlock({
+                    let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+                    let gameScene = GameScene(size:self.size)
+                    self.view?.presentScene(gameScene, transition: reveal)
+                })]
+                let sequence = SKAction.sequence(actions)
+                self.runAction(sequence)
+                
+            }
             if (name?.componentsSeparatedByString("node").count > 1){
                 if(name?.componentsSeparatedByString("start").count > 1){
                     print("start")
-                    let wiggleIn = SKAction.scaleTo(2.2, duration: 0.1)
+                    let wiggleIn = SKAction.scaleTo(1.5, duration: 0.1)
                     //let wiggleOut = SKAction.scaleTo(2.2, duration: 0.1)
                     node.runAction(wiggleIn)
                     
@@ -139,6 +158,10 @@ class GameScene: SKScene {
                     n.y = y!
                     action_list.append(n)
                     node_list.append(node)
+                    
+                    //var soundID = SystemSoundID(kSystemSoundID_Vibrate)
+                    
+                    self.runAction(SKAction.playSoundFileNamed("ding.mp3", waitForCompletion: false))
                 }
             }
         }
@@ -153,7 +176,7 @@ class GameScene: SKScene {
                 if (name?.componentsSeparatedByString("node").count > 1){
                     let subString1 = name?.componentsSeparatedByString(":")
                     let subString2 = subString1![1].componentsSeparatedByString(",")
-                    let wiggleIn = SKAction.scaleTo(2.2, duration: 0.1)
+                    let wiggleIn = SKAction.scaleTo(1.5, duration: 0.1)
                    // let wiggleOut = SKAction.scaleTo(2.2, duration: 0.1)
                     
                     
@@ -176,6 +199,7 @@ class GameScene: SKScene {
                         node.runAction(wiggleIn)
                         action_list.append(n)
                         node_list.append(node)
+                        self.runAction(SKAction.playSoundFileNamed("ding.mp3", waitForCompletion: false))
                         //let value = gBoard.get_value(x!,y: y!)
                         
                     }
@@ -189,7 +213,7 @@ class GameScene: SKScene {
                                 print("test")
                                 x = action_list[action_list.count - 1].x
                                 y = action_list[action_list.count - 1].y
-                                let wiggleout = SKAction.scaleTo(2.0, duration: 0.1)
+                                let wiggleout = SKAction.scaleTo(1.3, duration: 0.1)
                                 node_list[action_list.count - 1].runAction(wiggleout)
                                 print(x! ,y!)
                                 action_list.removeLast()
@@ -199,12 +223,14 @@ class GameScene: SKScene {
                                 node.runAction(wiggleIn)
                                 action_list.append(n)
                                 node_list.append(node)
+                                self.runAction(SKAction.playSoundFileNamed("ding.mp3", waitForCompletion: false))
                             }
                         }
                         else{
                             node.runAction(wiggleIn)
                             action_list.append(n)
                             node_list.append(node)
+                            self.runAction(SKAction.playSoundFileNamed("ding.mp3", waitForCompletion: false))
                             //let value = gBoard.get_value(x!,y: y!)
                             //node.runAction(get_action(value))
                             //gBoard.board[x! % gBoard.numRows + y! * gBoard.numCols] = change_value(value)
@@ -223,7 +249,7 @@ class GameScene: SKScene {
                 if(index != 0){
                     let value = gBoard.get_value(action_list[index].x, y: action_list[index].y)
                     node_list[index].runAction(get_action(value))
-                    let wiggleout = SKAction.scaleTo(2.0, duration: 0.1)
+                    let wiggleout = SKAction.scaleTo(1.3, duration: 0.1)
                     node_list[index].runAction(wiggleout)
                     gBoard.board[action_list[index].x % gBoard.numRows + action_list[index].y * gBoard.numCols] = change_value(value)
                 }
@@ -231,7 +257,7 @@ class GameScene: SKScene {
             let value = gBoard.get_value(action_list[0].x, y: action_list[0].y)
             node_list[0].runAction(get_start_action(value))
             node_list[0].name = "node:\(action_list[0].x),\(action_list[0].y)"
-            let wiggleout = SKAction.scaleTo(2.0, duration: 0.1)
+            let wiggleout = SKAction.scaleTo(1.3, duration: 0.1)
             node_list[0].runAction(wiggleout)
             gBoard.board[action_list[0].x % gBoard.numRows + action_list[0].y * gBoard.numCols] = change_start_value(value)
             
@@ -255,7 +281,7 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         if(sign == 2){
-            let actions: [SKAction] = [SKAction.waitForDuration(2.0),SKAction.runBlock({
+            let actions: [SKAction] = [SKAction.waitForDuration(0.5),SKAction.runBlock({
                 let reveal = SKTransition.flipHorizontalWithDuration(0.5)
                 let gameScene = gameOverScene(size: self.size,won: true)
                 self.view?.presentScene(gameScene, transition: reveal)
@@ -269,7 +295,7 @@ class GameScene: SKScene {
             var gameScene = gameOverScene(size: self.size,won: false)
             self.view?.presentScene(gameScene, transition: reveal)
             */
-            let actions: [SKAction] = [SKAction.waitForDuration(2.0),SKAction.runBlock({
+            let actions: [SKAction] = [SKAction.waitForDuration(0.5),SKAction.runBlock({
                 let reveal = SKTransition.flipHorizontalWithDuration(0.5)
                 let gameScene = gameOverScene(size: self.size,won: false)
                 self.view?.presentScene(gameScene, transition: reveal)
@@ -296,10 +322,27 @@ class GameScene: SKScene {
     func get_action (v:Int) -> SKAction{
         print(v)
         switch v{
-        case 1:return SKAction.animateWithTextures([SKTexture(imageNamed: "white")], timePerFrame: 0)
-        case 2:return SKAction.animateWithTextures([SKTexture(imageNamed: "black")], timePerFrame: 0)
-        case 3:return SKAction.animateWithTextures([SKTexture(imageNamed: "whiteStart")], timePerFrame: 0)
-        case 4:return SKAction.animateWithTextures([SKTexture(imageNamed: "blackStart")], timePerFrame: 0)
+        case 1:
+            let changePic = SKAction.animateWithTextures([SKTexture(imageNamed: "white")], timePerFrame: 0)
+            let firstFlip = SKAction.scaleXTo(0.0, duration: 0.2)
+            let secondFlip = SKAction.scaleXTo(1.3, duration: 0.2)
+            let sequence = SKAction.sequence([firstFlip,changePic,secondFlip])
+            return sequence
+        case 2:let changePic = SKAction.animateWithTextures([SKTexture(imageNamed: "black")], timePerFrame: 0)
+            let firstFlip = SKAction.scaleXTo(0.0, duration: 0.2)
+            let secondFlip = SKAction.scaleXTo(1.3, duration: 0.2)
+            let sequence = SKAction.sequence([firstFlip,changePic,secondFlip])
+            return sequence
+        case 3:let changePic = SKAction.animateWithTextures([SKTexture(imageNamed: "whiteStart")], timePerFrame: 0)
+            let firstFlip = SKAction.scaleXTo(0.0, duration: 0.2)
+            let secondFlip = SKAction.scaleXTo(1.3, duration: 0.2)
+            let sequence = SKAction.sequence([firstFlip,changePic,secondFlip])
+            return sequence
+        case 4:let changePic = SKAction.animateWithTextures([SKTexture(imageNamed: "blackStart")], timePerFrame: 0)
+            let firstFlip = SKAction.scaleXTo(0.0, duration: 0.2)
+            let secondFlip = SKAction.scaleXTo(1.3, duration: 0.2)
+            let sequence = SKAction.sequence([firstFlip,changePic,secondFlip])
+            return sequence
         default:return SKAction.colorizeWithColor(UIColor(red:0,green:0,blue:0,alpha:0.5), colorBlendFactor: 0, duration: 0)
         }
     }
@@ -322,8 +365,16 @@ class GameScene: SKScene {
     
     func get_start_action(v:Int) -> SKAction{
         switch v{
-        case 3:return SKAction.animateWithTextures([SKTexture(imageNamed: "white")], timePerFrame: 0)
-        case 4:return SKAction.animateWithTextures([SKTexture(imageNamed: "black")], timePerFrame: 0)
+        case 3:let changePic = SKAction.animateWithTextures([SKTexture(imageNamed: "white")], timePerFrame: 0)
+        let firstFlip = SKAction.scaleXTo(0.0, duration: 0.2)
+        let secondFlip = SKAction.scaleXTo(1.3, duration: 0.2)
+        let sequence = SKAction.sequence([firstFlip,changePic,secondFlip])
+        return sequence
+        case 4:let changePic = SKAction.animateWithTextures([SKTexture(imageNamed: "black")], timePerFrame: 0)
+        let firstFlip = SKAction.scaleXTo(0.0, duration: 0.2)
+        let secondFlip = SKAction.scaleXTo(1.3, duration: 0.2)
+        let sequence = SKAction.sequence([firstFlip,changePic,secondFlip])
+        return sequence
         default:return SKAction.colorizeWithColor(UIColor(red:0,green:0,blue:0,alpha:0.5), colorBlendFactor: 0, duration: 0)
         }
     }
