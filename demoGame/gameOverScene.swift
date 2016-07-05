@@ -26,7 +26,7 @@ class gameOverScene : SKScene{
         
         self.setupMsgLabel(won)
         
-        if won{
+        if won && level.l != 6{
             sign = true
             let nextTexture = SKTexture(imageNamed:"kaishi2")
             let node = SKSpriteNode(texture: nextTexture)
@@ -35,6 +35,17 @@ class gameOverScene : SKScene{
            // node.size = CGSize(width: self.size.width/4 ,height: self.size.width/8)
             node.zPosition = 0
             node.setScale(0.25)
+            //node.color = UIColor(red: 1.0,green: 0.0,blue: 0.0,alpha: 0.5)
+            self.addChild(node)
+        }
+        else if won && level.l == 6{
+            let nextTexture = SKTexture(imageNamed:"caidan")
+            let node = SKSpriteNode(texture: nextTexture)
+            node.name = "menu"
+            node.position = CGPointMake(self.size.width/2, self.size.height * 0.25 + 10)
+            // node.size = CGSize(width: self.size.width/4 ,height: self.size.width/8)
+            node.zPosition = 0
+            node.setScale(0.35)
             //node.color = UIColor(red: 1.0,green: 0.0,blue: 0.0,alpha: 0.5)
             self.addChild(node)
         }
@@ -58,33 +69,52 @@ class gameOverScene : SKScene{
             let location = touch.locationInNode(self)
             let node = self.nodeAtPoint(location)
             print(node.name)
-            self.runAction(SKAction.playSoundFileNamed("ding.mp3", waitForCompletion: false))
             if(node.name == "next"){
                 self.directorAction(sign)
             }
             if(node.name == "replay"){
                 self.directorAction(sign)
             }
-            
+            if(node.name == "menu"){
+                self.runAction(SKAction.playSoundFileNamed("ding.mp3", waitForCompletion: false))
+                let actions: [SKAction] = [SKAction.waitForDuration(1.0),SKAction.runBlock({
+                    let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+                    let gameScene = selectGameScene(size:self.size)
+                    self.view?.presentScene(gameScene, transition: reveal)
+                })]
+                let sequence = SKAction.sequence(actions)
+                self.runAction(sequence)
+            }
         }
         
     }
     
     func setupMsgLabel(won: Bool){
         var msg: String = won ? "You Win!" : "You Lose :["
-        
-        var msgLabel = SKLabelNode(fontNamed: "Chalkduster")
-        msgLabel.text = msg
-        msgLabel.fontSize = 45
-        msgLabel.fontColor = SKColor(red:0.0, green:0.0 ,blue:0.0 ,alpha:0.5)
-        msgLabel.position = CGPointMake(self.size.width/2, self.size.height/2 + 50)
-        self.addChild(msgLabel)
+        if level.l == 6 && won{
+            msg = "You Success!"
+            var msgLabel = SKLabelNode(fontNamed: "Chalkduster")
+            msgLabel.text = msg
+            msgLabel.fontSize = 35
+            msgLabel.fontColor = SKColor(red:0.0, green:0.0 ,blue:0.0 ,alpha:0.5)
+            msgLabel.position = CGPointMake(self.size.width/2, self.size.height/2 + 30)
+            self.addChild(msgLabel)
+        }
+        else{
+            var msgLabel = SKLabelNode(fontNamed: "Chalkduster")
+            msgLabel.text = msg
+            msgLabel.fontSize = 45
+            msgLabel.fontColor = SKColor(red:0.0, green:0.0 ,blue:0.0 ,alpha:0.5)
+            msgLabel.position = CGPointMake(self.size.width/2, self.size.height/2 + 50)
+            self.addChild(msgLabel)
+        }
     }
     
     func directorAction(won: Bool){
         if won{
             level.level_up()
         }
+        self.runAction(SKAction.playSoundFileNamed("ding.mp3", waitForCompletion: false))
         let actions: [SKAction] = [SKAction.waitForDuration(1.0),SKAction.runBlock({
             let reveal = SKTransition.flipHorizontalWithDuration(0.5)
             let gameScene = GameScene(size:self.size)
