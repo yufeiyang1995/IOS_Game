@@ -14,8 +14,4 @@ class level {
     static func level_up(){
         l = l + 1
     }
-    
-    static func level_select(level:Int){
-        l = level
-    }
 }

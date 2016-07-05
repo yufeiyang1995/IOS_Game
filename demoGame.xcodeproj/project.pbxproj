@@ -23,14 +23,6 @@
 		7C07F4AE1D04446000C9F4A2 /* soundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C07F4AD1D04446000C9F4A2 /* soundManager.swift */; };
 		7C07F4B21D04461700C9F4A2 /* ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7C07F4B11D04461700C9F4A2 /* ding.mp3 */; };
 		7C219B641CF2E27100556E20 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C219B631CF2E27100556E20 /* level1.txt */; };
-		7C8499321D2A1FAA00554E34 /* selectGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8499311D2A1FAA00554E34 /* selectGameScene.swift */; };
-		7C84FA8E1D2B687A00955F12 /* 1.3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C84FA871D2B687A00955F12 /* 1.3.png */; };
-		7C84FA8F1D2B687A00955F12 /* 1.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C84FA881D2B687A00955F12 /* 1.1.png */; };
-		7C84FA901D2B687A00955F12 /* 1.2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C84FA891D2B687A00955F12 /* 1.2.png */; };
-		7C84FA911D2B687A00955F12 /* 2.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C84FA8A1D2B687A00955F12 /* 2.1.png */; };
-		7C84FA921D2B687A00955F12 /* 2.2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C84FA8B1D2B687A00955F12 /* 2.2.png */; };
-		7C84FA931D2B687A00955F12 /* 2.3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C84FA8C1D2B687A00955F12 /* 2.3.png */; };
-		7C84FA941D2B687A00955F12 /* caidan.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C84FA8D1D2B687A00955F12 /* caidan.png */; };
 		7C96BF351CD622B600D348F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C96BF341CD622B600D348F9 /* AppDelegate.swift */; };
 		7C96BF371CD622B600D348F9 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7C96BF361CD622B600D348F9 /* GameScene.sks */; };
 		7C96BF391CD622B600D348F9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C96BF381CD622B600D348F9 /* GameScene.swift */; };
@@ -38,6 +30,7 @@
 		7C96BF3E1CD622B600D348F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C96BF3C1CD622B600D348F9 /* Main.storyboard */; };
 		7C96BF401CD622B600D348F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C96BF3F1CD622B600D348F9 /* Assets.xcassets */; };
 		7C96BF431CD622B600D348F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C96BF411CD622B600D348F9 /* LaunchScreen.storyboard */; };
+		7C96BF4D1CD6288C00D348F9 /* feidao.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C96BF4C1CD6288C00D348F9 /* feidao.png */; };
 		7C96BF531CD634EB00D348F9 /* gameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C96BF521CD634EB00D348F9 /* gameBoard.swift */; };
 		7C96DD521D00644C00BBEDBA /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C96DD511D00644C00BBEDBA /* Location.swift */; };
 		7CF227691CF59AF200E946DB /* gameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF227681CF59AF200E946DB /* gameOverScene.swift */; };
@@ -61,14 +54,6 @@
 		7C07F4AD1D04446000C9F4A2 /* soundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soundManager.swift; sourceTree = "<group>"; };
 		7C07F4B11D04461700C9F4A2 /* ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ding.mp3; sourceTree = "<group>"; };
 		7C219B631CF2E27100556E20 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
-		7C8499311D2A1FAA00554E34 /* selectGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectGameScene.swift; sourceTree = "<group>"; };
-		7C84FA871D2B687A00955F12 /* 1.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.3.png; sourceTree = "<group>"; };
-		7C84FA881D2B687A00955F12 /* 1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.1.png; sourceTree = "<group>"; };
-		7C84FA891D2B687A00955F12 /* 1.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.2.png; sourceTree = "<group>"; };
-		7C84FA8A1D2B687A00955F12 /* 2.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.1.png; sourceTree = "<group>"; };
-		7C84FA8B1D2B687A00955F12 /* 2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.2.png; sourceTree = "<group>"; };
-		7C84FA8C1D2B687A00955F12 /* 2.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.3.png; sourceTree = "<group>"; };
-		7C84FA8D1D2B687A00955F12 /* caidan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = caidan.png; sourceTree = "<group>"; };
 		7C96BF311CD622B600D348F9 /* demoGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = demoGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C96BF341CD622B600D348F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C96BF361CD622B600D348F9 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -78,6 +63,7 @@
 		7C96BF3F1CD622B600D348F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C96BF421CD622B600D348F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C96BF441CD622B600D348F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C96BF4C1CD6288C00D348F9 /* feidao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = feidao.png; path = demoGame/feidao.png; sourceTree = "<group>"; };
 		7C96BF521CD634EB00D348F9 /* gameBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameBoard.swift; sourceTree = "<group>"; };
 		7C96DD511D00644C00BBEDBA /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		7CF227681CF59AF200E946DB /* gameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameOverScene.swift; sourceTree = "<group>"; };
@@ -135,9 +121,8 @@
 				7C219B611CF2E20300556E20 /* level */,
 				7C96BF4F1CD62E6C00D348F9 /* sprites.atlas */,
 				7C96BF341CD622B600D348F9 /* AppDelegate.swift */,
-				7C07F4A61D03FAB700C9F4A2 /* startViewontroller.swift */,
-				7C8499311D2A1FAA00554E34 /* selectGameScene.swift */,
 				7C07F4A81D03FF5400C9F4A2 /* startGameScene.swift */,
+				7C07F4A61D03FAB700C9F4A2 /* startViewontroller.swift */,
 				7C96BF361CD622B600D348F9 /* GameScene.sks */,
 				7C96BF381CD622B600D348F9 /* GameScene.swift */,
 				7C96BF3A1CD622B600D348F9 /* GameViewController.swift */,
@@ -156,13 +141,6 @@
 		7C96BF4F1CD62E6C00D348F9 /* sprites.atlas */ = {
 			isa = PBXGroup;
 			children = (
-				7C84FA871D2B687A00955F12 /* 1.3.png */,
-				7C84FA881D2B687A00955F12 /* 1.1.png */,
-				7C84FA891D2B687A00955F12 /* 1.2.png */,
-				7C84FA8A1D2B687A00955F12 /* 2.1.png */,
-				7C84FA8B1D2B687A00955F12 /* 2.2.png */,
-				7C84FA8C1D2B687A00955F12 /* 2.3.png */,
-				7C84FA8D1D2B687A00955F12 /* caidan.png */,
 				7C07F4A11D03F55F00C9F4A2 /* kaishi2.png */,
 				7C07F4AA1D042D5300C9F4A2 /* title.png */,
 				7C07F49F1D03F38800C9F4A2 /* kaishi.png */,
@@ -174,6 +152,7 @@
 				7C07F4901D03CAFB00C9F4A2 /* whiteStart.png */,
 				7C07F4911D03CAFB00C9F4A2 /* blackStart.png */,
 				7C07F4921D03CAFB00C9F4A2 /* white.png */,
+				7C96BF4C1CD6288C00D348F9 /* feidao.png */,
 			);
 			name = sprites.atlas;
 			path = ..;
@@ -241,25 +220,19 @@
 				7C96BF371CD622B600D348F9 /* GameScene.sks in Resources */,
 				7C07F4AB1D042D5300C9F4A2 /* title.png in Resources */,
 				7C07F4B21D04461700C9F4A2 /* ding.mp3 in Resources */,
-				7C84FA911D2B687A00955F12 /* 2.1.png in Resources */,
 				7C07F4931D03CAFB00C9F4A2 /* black.png in Resources */,
-				7C84FA921D2B687A00955F12 /* 2.2.png in Resources */,
 				7C07F49B1D03F04700C9F4A2 /* zanting.png in Resources */,
 				7C96BF431CD622B600D348F9 /* LaunchScreen.storyboard in Resources */,
-				7C84FA8E1D2B687A00955F12 /* 1.3.png in Resources */,
 				7C07F49E1D03F04700C9F4A2 /* beijing.png in Resources */,
 				7C07F49D1D03F04700C9F4A2 /* restart.png in Resources */,
 				7C07F4941D03CAFB00C9F4A2 /* whiteStart.png in Resources */,
 				7C07F4A01D03F38800C9F4A2 /* kaishi.png in Resources */,
 				7C96BF401CD622B600D348F9 /* Assets.xcassets in Resources */,
-				7C84FA941D2B687A00955F12 /* caidan.png in Resources */,
 				7C07F4A21D03F55F00C9F4A2 /* kaishi2.png in Resources */,
 				7C219B641CF2E27100556E20 /* level1.txt in Resources */,
-				7C84FA8F1D2B687A00955F12 /* 1.1.png in Resources */,
-				7C84FA901D2B687A00955F12 /* 1.2.png in Resources */,
 				7C07F4951D03CAFB00C9F4A2 /* blackStart.png in Resources */,
+				7C96BF4D1CD6288C00D348F9 /* feidao.png in Resources */,
 				7C96BF3E1CD622B600D348F9 /* Main.storyboard in Resources */,
-				7C84FA931D2B687A00955F12 /* 2.3.png in Resources */,
 				7C07F49C1D03F04700C9F4A2 /* start.png in Resources */,
 				7C07F4961D03CAFB00C9F4A2 /* white.png in Resources */,
 			);
@@ -280,7 +253,6 @@
 				7C07F4A71D03FAB700C9F4A2 /* startViewontroller.swift in Sources */,
 				7CFEFA341CF86B33003555AF /* level.swift in Sources */,
 				7C07F4A91D03FF5400C9F4A2 /* startGameScene.swift in Sources */,
-				7C8499321D2A1FAA00554E34 /* selectGameScene.swift in Sources */,
 				7C96DD521D00644C00BBEDBA /* Location.swift in Sources */,
 				7C07F4AE1D04446000C9F4A2 /* soundManager.swift in Sources */,
 			);

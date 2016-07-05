@@ -42,21 +42,6 @@ class gameBoard{
             numCols = 5
             board = Array(count: 36,repeatedValue: 0)
             is_changed = Array(count: 36,repeatedValue: 0)
-        case 4:
-            numRows = 6
-            numCols = 5
-            board = Array(count: 36,repeatedValue: 0)
-            is_changed = Array(count: 36,repeatedValue: 0)
-        case 5:
-            numRows = 6
-            numCols = 5
-            board = Array(count: 36,repeatedValue: 0)
-            is_changed = Array(count: 36,repeatedValue: 0)
-        case 6:
-            numRows = 6
-            numCols = 5
-            board = Array(count: 36,repeatedValue: 0)
-            is_changed = Array(count: 36,repeatedValue: 0)
         default:numCols = 4
             numRows = 4
             
@@ -110,61 +95,6 @@ class gameBoard{
             board[27] = 2
             board[29] = 2
             board[26] = 3
-        case 4:
-            board[0] = 0
-            board[1] = 0
-            board[3] = 3
-            board[4] = 2
-            board[5] = 0
-            board[6] = 0
-            board[8] = 2
-            board[9] = 2
-            board[13] = 2
-            board[16] = 2
-            board[20] = 2
-            board[21] = 2
-            board[23] = 0
-            board[24] = 0
-            board[25] = 4
-            board[28] = 0
-            board[29] = 0
-        case 5:
-            board[0] = 3
-            board[4] = 2
-            board[5] = 2
-            board[6] = 2
-            board[8] = 2
-            board[9] = 2
-            board[10] = 0
-            board[11] = 2
-            board[13] = 2
-            board[14] = 0
-            board[15] = 0
-            board[16] = 2
-            board[18] = 2
-            board[19] = 0
-            board[20] = 2
-            board[21] = 2
-            board[23] = 2
-            board[24] = 2
-            board[25] = 2
-            board[28] = 3
-            board[29] = 2
-        case 6:
-            board[0] = 2
-            board[2] = 2
-            board[4] = 2
-            board[5] = 0
-            board[9] = 0
-            board[11] = 2
-            board[13] = 2
-            board[20] = 0
-            board[24] = 0
-            board[25] = 4
-            board[26] = 2
-            board[27] = 4
-            board[28] = 2
-            board[29] = 4
         default:return
         }
     }
@@ -179,11 +109,12 @@ class gameBoard{
         for y in 0...(numRows-1) {
             for x in 0...(numCols-1){
                 if(x % numRows + y * numCols + 1 >= numCols * numRows){break;}
-                if((board[x % numRows + y * numCols] == board[x % numRows + y * numCols + 1]) ||
-                    (board[x % numRows + y * numCols] == 0 || board[x % numRows + y * numCols + 1] == 0)){
+                if(board[x % numRows + y * numCols] == board[x % numRows + y * numCols + 1]){
                     num = num + 1
                 }
-                
+                if(board[x % numRows + y * numCols] == 0 || board[x % numRows + y * numCols + 1] == 0){
+                    num = num + 1
+                }
             }
         }
         print(num)
