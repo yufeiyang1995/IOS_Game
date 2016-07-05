@@ -60,7 +60,7 @@ class startGameScene: SKScene{
                 self.runAction(SKAction.playSoundFileNamed("ding.mp3", waitForCompletion: false))
                 let actions: [SKAction] = [SKAction.waitForDuration(0.5),SKAction.runBlock({
                     let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-                    let gameScene = GameScene(size:self.size)
+                    let gameScene = selectGameScene(size:self.size)
                     self.view?.presentScene(gameScene, transition: reveal)
                 })]
                 let sequence = SKAction.sequence(actions)

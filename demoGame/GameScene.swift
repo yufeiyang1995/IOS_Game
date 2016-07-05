@@ -91,7 +91,7 @@ class GameScene: SKScene {
                     let tile = SKSpriteNode(texture: nodeTexture)
                     let x_temp = x * blockWidth + (x + 1) * spaceBetweenBlock
                     let y_temp = y * blockHeight + (y + 1) * spaceBetweenBlock
-                    tile.position = CGPoint(x: x_margin + Double(x_temp) + 20,y: y_margin + Double(y_temp) + 30)
+                    tile.position = CGPoint(x: x_margin + Double(x_temp) + 20,y: y_margin + Double(y_temp) + 20)
                 //tile.anchorPoint = CGPoint(x:0, y:0)
                     tile.size = CGSize(width: blockWidth,height: blockHeight)
                     tile.setScale(1.3)
@@ -116,8 +116,24 @@ class GameScene: SKScene {
         node.name = "replay"
         node.setScale(0.5)
         node.zPosition = 0.5
-        node.position = CGPoint(x: self.size.width/2 + 5,y: self.size.height-30)
+        node.position = CGPoint(x: 30,y: self.size.height-30)
         backgroundNode.addChild(node)
+        
+        let menuTexture = SKTexture(imageNamed: "caidan")
+        let node1 = SKSpriteNode(texture: menuTexture)
+        node1.name = "menu"
+        node1.setScale(0.25)
+        node1.zPosition = 0.5
+        node1.position = CGPoint(x: self.size.width-30,y: self.size.height-30)
+        backgroundNode.addChild(node1)
+        
+        let msg: String = selectLevel(level.l)
+        let msgLabel = SKLabelNode(fontNamed: "Chalkduster")
+        msgLabel.text = msg
+        msgLabel.fontSize = 40
+        msgLabel.fontColor = SKColor(red:0.0, green:0.0 ,blue:0.0 ,alpha:0.5)
+        msgLabel.position = CGPointMake(self.size.width/2, self.size.height-50)
+        self.addChild(msgLabel)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -138,6 +154,16 @@ class GameScene: SKScene {
                 let sequence = SKAction.sequence(actions)
                 self.runAction(sequence)
                 
+            }
+            if(name == "menu"){
+                self.runAction(SKAction.playSoundFileNamed("ding.mp3", waitForCompletion: false))
+                let actions: [SKAction] = [SKAction.waitForDuration(0.5),SKAction.runBlock({
+                    let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+                    let gameScene = selectGameScene(size:self.size)
+                    self.view?.presentScene(gameScene, transition: reveal)
+                })]
+                let sequence = SKAction.sequence(actions)
+                self.runAction(sequence)
             }
             if (name?.componentsSeparatedByString("node").count > 1){
                 if(name?.componentsSeparatedByString("start").count > 1){
@@ -384,6 +410,18 @@ class GameScene: SKScene {
         case 3:return 2;
         case 4:return 1;
         default:return 0;
+        }
+    }
+    
+    func selectLevel(l:Int) -> String{
+        switch l{
+        case 1:return "1-1"
+        case 2:return "1-2"
+        case 3:return "1-3"
+        case 4:return "1-4"
+        case 5:return "1-5"
+        case 6:return "1-6"
+        default:return ""
         }
     }
 }
