@@ -22,6 +22,8 @@
 		7C07F4AB1D042D5300C9F4A2 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C07F4AA1D042D5300C9F4A2 /* title.png */; };
 		7C07F4AE1D04446000C9F4A2 /* soundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C07F4AD1D04446000C9F4A2 /* soundManager.swift */; };
 		7C07F4B21D04461700C9F4A2 /* ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7C07F4B11D04461700C9F4A2 /* ding.mp3 */; };
+		7C088C021D2BDAEA00E30F26 /* spotlight-iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C088C001D2BDAEA00E30F26 /* spotlight-iPhone@2x.png */; };
+		7C088C031D2BDAEA00E30F26 /* spotlight-iPhone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C088C011D2BDAEA00E30F26 /* spotlight-iPhone@3x.png */; };
 		7C219B641CF2E27100556E20 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7C219B631CF2E27100556E20 /* level1.txt */; };
 		7C8499321D2A1FAA00554E34 /* selectGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8499311D2A1FAA00554E34 /* selectGameScene.swift */; };
 		7C84FA8E1D2B687A00955F12 /* 1.3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C84FA871D2B687A00955F12 /* 1.3.png */; };
@@ -60,6 +62,8 @@
 		7C07F4AA1D042D5300C9F4A2 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		7C07F4AD1D04446000C9F4A2 /* soundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soundManager.swift; sourceTree = "<group>"; };
 		7C07F4B11D04461700C9F4A2 /* ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ding.mp3; sourceTree = "<group>"; };
+		7C088C001D2BDAEA00E30F26 /* spotlight-iPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spotlight-iPhone@2x.png"; sourceTree = "<group>"; };
+		7C088C011D2BDAEA00E30F26 /* spotlight-iPhone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spotlight-iPhone@3x.png"; sourceTree = "<group>"; };
 		7C219B631CF2E27100556E20 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
 		7C8499311D2A1FAA00554E34 /* selectGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectGameScene.swift; sourceTree = "<group>"; };
 		7C84FA871D2B687A00955F12 /* 1.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.3.png; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 				7C84FA8A1D2B687A00955F12 /* 2.1.png */,
 				7C84FA8B1D2B687A00955F12 /* 2.2.png */,
 				7C84FA8C1D2B687A00955F12 /* 2.3.png */,
+				7C088C001D2BDAEA00E30F26 /* spotlight-iPhone@2x.png */,
+				7C088C011D2BDAEA00E30F26 /* spotlight-iPhone@3x.png */,
 				7C84FA8D1D2B687A00955F12 /* caidan.png */,
 				7C07F4A11D03F55F00C9F4A2 /* kaishi2.png */,
 				7C07F4AA1D042D5300C9F4A2 /* title.png */,
@@ -239,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C96BF371CD622B600D348F9 /* GameScene.sks in Resources */,
+				7C088C021D2BDAEA00E30F26 /* spotlight-iPhone@2x.png in Resources */,
 				7C07F4AB1D042D5300C9F4A2 /* title.png in Resources */,
 				7C07F4B21D04461700C9F4A2 /* ding.mp3 in Resources */,
 				7C84FA911D2B687A00955F12 /* 2.1.png in Resources */,
@@ -258,6 +265,7 @@
 				7C84FA8F1D2B687A00955F12 /* 1.1.png in Resources */,
 				7C84FA901D2B687A00955F12 /* 1.2.png in Resources */,
 				7C07F4951D03CAFB00C9F4A2 /* blackStart.png in Resources */,
+				7C088C031D2BDAEA00E30F26 /* spotlight-iPhone@3x.png in Resources */,
 				7C96BF3E1CD622B600D348F9 /* Main.storyboard in Resources */,
 				7C84FA931D2B687A00955F12 /* 2.3.png in Resources */,
 				7C07F49C1D03F04700C9F4A2 /* start.png in Resources */,
