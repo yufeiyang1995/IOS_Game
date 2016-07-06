@@ -10,10 +10,12 @@ import UIKit
 import SpriteKit
 
 class startViewController: UIViewController {
+    lazy var sound = soundManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        sound.BackgroundMusic()
     }
     
     override func viewWillLayoutSubviews() {

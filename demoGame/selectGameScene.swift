@@ -49,7 +49,7 @@ class selectGameScene: SKScene{
                 node.zPosition = 0
                 node.setScale(0.55)
                 //node.color = UIColor(red: 1.0,green: 0.0,blue: 0.0,alpha: 0.5)
-                self.addChild(node)
+                backgroundNode.addChild(node)
                 
             }
         }

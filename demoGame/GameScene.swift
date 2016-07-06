@@ -24,6 +24,7 @@ class GameScene: SKScene {
     var gBoard = gameBoard()
     var action_list = Array<Location>()
     var node_list = Array<SKNode>()
+    lazy var sound = soundManager()
     
     enum Level: Int{
         case One = 1,Two,Three,Four,Five,Six
@@ -52,6 +53,10 @@ class GameScene: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
+        //self.addChild(sound)
+        //播放背景音乐
+        //sound.BackgroundMusic()
+        
         print(gameLevel.rawValue)
         gBoard.init_board()
         gBoard.set_board()
@@ -307,6 +312,7 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         if(sign == 2){
+            //sound.stopBgm()
             let actions: [SKAction] = [SKAction.waitForDuration(0.5),SKAction.runBlock({
                 let reveal = SKTransition.flipHorizontalWithDuration(0.5)
                 let gameScene = gameOverScene(size: self.size,won: true)
@@ -317,6 +323,7 @@ class GameScene: SKScene {
             
         }
         else if(sign == 3){
+            //sound.stopBgm()
            /* var reveal = SKTransition.flipHorizontalWithDuration(0.5)
             var gameScene = gameOverScene(size: self.size,won: false)
             self.view?.presentScene(gameScene, transition: reveal)

@@ -9,6 +9,7 @@
 import SpriteKit
 
 class startGameScene: SKScene{
+    
     override init(size: CGSize) {
         super.init(size: size)
         
@@ -20,6 +21,7 @@ class startGameScene: SKScene{
     }
     
     override func didMoveToView(view: SKView) {
+        
         var backgroundNode:SKSpriteNode = SKSpriteNode()
         let nodeTexture = SKTexture(imageNamed: "beijing")
         backgroundNode = SKSpriteNode(texture: nodeTexture)

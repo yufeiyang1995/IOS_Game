@@ -18,7 +18,7 @@ class GameViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
+
         var skView : SKView = self.view as! SKView
         if (skView.scene == nil){
             skView.showsFPS = true
