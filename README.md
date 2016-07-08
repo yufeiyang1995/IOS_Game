@@ -11,7 +11,3 @@ It is the first ios game which I developed ,and I achieved most basic functions.
 3. 该游戏具有选择关卡的功能，可以在该level界面进行关卡的选择
 4. 在每一个游戏界面的左上角具有重新开始改关卡的功能，右上角具有回到关卡选择界面的功能
 5. 该游戏添加了音效，具有背景音乐和点击某一点的特殊音效
-
-## 游戏界面示例
-1. 起始界面：![image](https://github.com/yufeiyang1995/IOS_Game/picture/screen1.png)
-2. 
