@@ -13,3 +13,5 @@ It is the first ios game which I developed ,and I achieved most basic functions.
 5. 该游戏添加了音效，具有背景音乐和点击某一点的特殊音效
 
 ## 游戏界面示例
+1. 起始界面：![image](https://github.com/yufeiyang1995/IOS_Game/picture/screen1.png)
+2. 
